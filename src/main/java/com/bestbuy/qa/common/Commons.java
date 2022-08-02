@@ -50,4 +50,19 @@ public class Commons {
 		Loggers.getLog("Current URL is : " + driver.getCurrentUrl());
 		return driver.getCurrentUrl();
 	}
+	
+	public boolean buttonEnabled(WebElement element) {
+		boolean button = false;
+		try {
+			button = element.isEnabled();
+			Loggers.getLog(element + " ---> This element is enabled : " + button);
+		} catch (NullPointerException | NoSuchElementException e) {
+			e.printStackTrace();
+			Loggers.getLog(element + " : This element Not Found");
+			Assert.fail();
+		}
+		return button;
+		
+		
+	}
 }

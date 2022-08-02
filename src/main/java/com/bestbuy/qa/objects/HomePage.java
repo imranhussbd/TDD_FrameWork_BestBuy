@@ -20,8 +20,12 @@ public class HomePage {
 	
 	@FindBy(id = "gh-search-input")
 	WebElement searchElement;
+	
 	@FindBy(className = "header-search-button")
 	WebElement searchButtonElement;
+	
+	@FindBy(xpath = "//a[text() = 'Shop Featured PS5']")
+	WebElement shopFtP5ButtonElement;
 	
 	private void inputSearch(String value) {
 		commons.inputValues(searchElement, value);
@@ -31,9 +35,14 @@ public class HomePage {
 		commons.click(searchButtonElement);
 	}
 	
+	private void clickShopFtPs5() {
+		commons.click(shopFtP5ButtonElement);
+	}
+	
 	
 	public void homepageSteps(String value) {
 		inputSearch(value);
 		clickSearch();
+		clickShopFtPs5();
 	}
 }

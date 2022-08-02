@@ -8,9 +8,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 
 import com.bestbuy.qa.common.Commons;
 import com.bestbuy.qa.objects.HomePage;
+import com.bestbuy.qa.objects.Ps5PackagePage;
 import com.bestbuy.qa.utils.Configuration;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -23,10 +25,12 @@ public class BaseClass {
 
 	protected Commons commons;
 	protected HomePage homePage;
+	protected Ps5PackagePage ps5PackagePage;
 
+	@Parameters("browser")
 	@BeforeMethod
-	public void setUp() {
-		driver = localDriver("chrome");
+	public void setUp(String browser1) {
+		driver = localDriver(browser1);
 		driver.manage().window().maximize();
 		driver.get(configuration.getConfiguration("url"));
 		driver.manage().timeouts()
@@ -56,7 +60,7 @@ public class BaseClass {
 	private void initClasses() {
 		commons = new Commons();
 		homePage = new HomePage(driver, commons);
-
+		ps5PackagePage = new Ps5PackagePage(driver, commons);
 	}
 
 	protected WebDriver getDriver() {
