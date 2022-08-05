@@ -18,8 +18,6 @@ public class Ps5PackagePage {
 		PageFactory.initElements(driver, this);
 		this.driver = driver;
 		this.commons = commons;
-		
-		
 
 	}
 
@@ -28,7 +26,7 @@ public class Ps5PackagePage {
 
 	@FindBy(xpath = "(//button[@class = 'c-button c-button-disabled c-button-md c-button-block add-to-cart-button'])[1]")
 	WebElement ps5SoldOutElement;
-	
+
 	@FindBy(xpath = "(//button[@class = 'c-button c-button-disabled c-button-md c-button-block add-to-cart-button'])[2]")
 	WebElement ps5DigitalSoldOutElement;
 
@@ -39,16 +37,14 @@ public class Ps5PackagePage {
 	private void getCurrentUrl(String expectedUrl) {
 		assertEquals(commons.getCurrentUrl(driver), expectedUrl);
 	}
-	
+
 	private void ps5SoldOutButtonDisabled() {
 		commons.buttonEnabled(ps5SoldOutElement);
 	}
-	
+
 	private void ps5DigitalSoldOutButtonDisabled() {
 		commons.buttonEnabled(ps5DigitalSoldOutElement);
 	}
-	
-	
 
 	public void ps5PgSteps(String expected, String expectedUrl) {
 		getTitle(expected);

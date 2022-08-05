@@ -11,11 +11,14 @@ import com.bestbuy.qa.common.Commons;
 
 public class HomePage {
 
+	WebDriver driver;
 	Commons commons;
 	
 	public HomePage(WebDriver driver, Commons commons) {
 		PageFactory.initElements(driver, this);
+		this.driver = driver;
 		this.commons = commons;
+		
 	}
 	
 	@FindBy(id = "gh-search-input")
