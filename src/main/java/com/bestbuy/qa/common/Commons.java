@@ -10,6 +10,9 @@ import com.bestbuy.qa.reporting.Loggers;
 
 
 public class Commons {
+	
+	WebDriver driver;
+	CommonWaits waits;
 
 	public void inputValues(WebElement element, String value) {
 		try {
@@ -24,6 +27,7 @@ public class Commons {
 	
 	public void click(WebElement element) {
 		try {
+			waits.waitUntilClickable(element);
 			element.click();
 			Loggers.getLog(element + " ---> This element has been clicked");
 		} catch (NullPointerException | NoSuchElementException e) {
@@ -49,6 +53,11 @@ public class Commons {
 	public String getCurrentUrl(WebDriver driver) {
 		Loggers.getLog("Current URL is : " + driver.getCurrentUrl());
 		return driver.getCurrentUrl();
+	}
+	
+	public String getTitle(WebDriver driver) {
+		Loggers.getLog("The Title of the page is : " + driver.getTitle());
+		return driver.getTitle();
 	}
 	
 	public boolean buttonEnabled(WebElement element) {

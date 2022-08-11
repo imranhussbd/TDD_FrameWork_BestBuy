@@ -22,7 +22,7 @@ public class Ps5PackagePage {
 	}
 
 	@FindBy(tagName = "h1")
-	WebElement titlElement;
+	WebElement pageHeadingElement ;
 
 	@FindBy(xpath = "(//button[@class = 'c-button c-button-disabled c-button-md c-button-block add-to-cart-button'])[1]")
 	WebElement ps5SoldOutElement;
@@ -30,8 +30,8 @@ public class Ps5PackagePage {
 	@FindBy(xpath = "(//button[@class = 'c-button c-button-disabled c-button-md c-button-block add-to-cart-button'])[2]")
 	WebElement ps5DigitalSoldOutElement;
 
-	private void getTitle(String expected) {
-		assertEquals(commons.getText(titlElement), expected);
+	private void getHeadingText(String expected) {
+		assertEquals(commons.getText(pageHeadingElement), expected);
 	}
 
 	private void getCurrentUrl(String expectedUrl) {
@@ -47,7 +47,7 @@ public class Ps5PackagePage {
 	}
 
 	public void ps5PgSteps(String expected, String expectedUrl) {
-		getTitle(expected);
+		getHeadingText(expected);
 		getCurrentUrl(expectedUrl);
 		ps5SoldOutButtonDisabled();
 		ps5DigitalSoldOutButtonDisabled();

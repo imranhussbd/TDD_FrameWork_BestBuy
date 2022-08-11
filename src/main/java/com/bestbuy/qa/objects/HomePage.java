@@ -1,5 +1,7 @@
 package com.bestbuy.qa.objects;
 
+import static org.testng.Assert.assertEquals;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,11 +10,12 @@ import org.openqa.selenium.support.PageFactory;
 import com.bestbuy.qa.common.Commons;
 
 public class HomePage {
-
+	WebDriver driver;
 	Commons commons;
 
 	public HomePage(WebDriver driver, Commons commons) {
 		PageFactory.initElements(driver, this);
+		this.driver = driver;
 		this.commons = commons;
 
 	}
@@ -25,6 +28,10 @@ public class HomePage {
 
 	@FindBy(xpath = "//a[text() = 'Shop Featured PS5']")
 	WebElement shopFtP5ButtonElement;
+	
+	private void getTitle(String expectedTitle) {
+		assertEquals(commons.getTitle(driver), expectedTitle);
+	}
 
 	private void inputSearch(String value) {
 		commons.inputValues(searchElement, value);
@@ -38,7 +45,8 @@ public class HomePage {
 		commons.click(shopFtP5ButtonElement);
 	}
 
-	public void homepageSteps(String value) {
+	public void homepageSteps(String expectedTitle, String value) {
+		getTitle(expectedTitle);
 		inputSearch(value);
 		clickSearch();
 		clickShopFtPs5();
