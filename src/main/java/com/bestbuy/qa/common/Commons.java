@@ -13,6 +13,11 @@ public class Commons {
 	
 	WebDriver driver;
 	CommonWaits waits;
+	
+	public Commons (WebDriver driver, CommonWaits waits) {
+		this.driver = driver;
+		this.waits = waits;
+	}
 
 	public void inputValues(WebElement element, String value) {
 		try {

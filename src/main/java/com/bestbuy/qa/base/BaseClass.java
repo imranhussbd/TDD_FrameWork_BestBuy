@@ -6,10 +6,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 
+import com.bestbuy.qa.common.CommonWaits;
 import com.bestbuy.qa.common.Commons;
 import com.bestbuy.qa.objects.HomePage;
 import com.bestbuy.qa.objects.Ps5PackagePage;
@@ -22,8 +24,10 @@ public class BaseClass {
 	public Configuration configuration = new Configuration(null);
 
 	WebDriver driver;
+	WebDriverWait wait;
 
 	protected Commons commons;
+	CommonWaits waits;
 	protected HomePage homePage;
 	protected Ps5PackagePage ps5PackagePage;
 
@@ -33,10 +37,9 @@ public class BaseClass {
 		driver = localDriver(browser1);
 		driver.manage().window().maximize();
 		driver.get(configuration.getConfiguration("url"));
-		driver.manage().timeouts()
-				.pageLoadTimeout(Duration.ofSeconds(Integer.parseInt(configuration.getConfiguration("pageloadWait"))));
-		driver.manage().timeouts()
-				.implicitlyWait(Duration.ofSeconds(Integer.parseInt(configuration.getConfiguration("implicitWait"))));
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(Integer.parseInt(configuration.getConfiguration("pageloadWait"))));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Integer.parseInt(configuration.getConfiguration("implicitWait"))));
+		wait = new WebDriverWait(driver, Duration.ofSeconds(Integer.parseInt(configuration.getConfiguration("explicitWait"))));
 		initClasses();
 	}
 
@@ -58,7 +61,8 @@ public class BaseClass {
 	}
 
 	private void initClasses() {
-		commons = new Commons();
+		waits = new CommonWaits(wait);
+		commons = new Commons(driver, waits);
 		homePage = new HomePage(driver, commons);
 		ps5PackagePage = new Ps5PackagePage(driver, commons);
 	}

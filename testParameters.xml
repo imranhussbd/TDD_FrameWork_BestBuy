@@ -3,8 +3,9 @@
 <suite name="Suite">
   <test thread-count="5" name="Test">
   <parameter name="browser" value="chrome"></parameter>
+  <parameter name="searchValue" value="PS5"></parameter>
     <classes>
-      <class name="com.bestbuy.qa.home.test.HomePs5TestClass"/>
+      <class name="com.bestbuy.qa.parameter.test.SearchInputTestClass"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
