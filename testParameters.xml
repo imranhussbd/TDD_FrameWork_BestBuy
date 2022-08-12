@@ -5,7 +5,7 @@
   <parameter name="browser" value="chrome"></parameter>
   <parameter name="searchValue" value="PS5"></parameter>
     <classes>
-      <class name="com.bestbuy.qa.parameter.test.SearchInputTestClass"/>
+       <class name="com.bestbuy.qa.home.test.HomeParameterTestClass"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
