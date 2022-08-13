@@ -29,6 +29,12 @@ public class HomePage {
 	@FindBy(xpath = "//a[text() = 'Shop Featured PS5']")
 	WebElement shopFtP5ButtonElement;
 	
+	@FindBy(xpath = "//span[text()='Account']")
+	WebElement accountElement;
+	
+	@FindBy(xpath = "//a[text()='Create Account']")
+	WebElement createAccElement;
+	
 	private void getTitle(String expectedTitle) {
 		assertEquals(commons.getTitle(driver), expectedTitle);
 	}
@@ -44,6 +50,14 @@ public class HomePage {
 	private void clickShopFtPs5() {
 		commons.click(shopFtP5ButtonElement);
 	}
+	
+	private void clickAccount() {
+		commons.click(accountElement);
+	}
+	
+	private void clickCreateAcc() {
+		commons.click(createAccElement);
+	}
 
 	public void homepageSteps(String expectedTitle, String value) {
 		getTitle(expectedTitle);
@@ -56,5 +70,11 @@ public class HomePage {
 		inputSearch(value);
 		clickSearch();
 		clickShopFtPs5();
+	}
+	
+	public void homepageAccountSteps() {
+		clickAccount();
+		clickCreateAcc();
+		
 	}
 }

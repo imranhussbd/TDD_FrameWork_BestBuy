@@ -76,7 +76,18 @@ public class Commons {
 			Assert.fail();
 		}
 		return button;
-		
-		
+		}
+	
+	public boolean isPresent(WebElement element) {
+		boolean logo = false;
+		try {
+			logo = element.isDisplayed();
+			Loggers.getLog(element + " ---> This element is displayed : " + logo);
+		} catch (NullPointerException | NoSuchElementException e) {
+			e.printStackTrace();
+			Loggers.getLog(element + " : This element Not Found");
+			Assert.fail();
+		}
+		return logo;
 	}
 }

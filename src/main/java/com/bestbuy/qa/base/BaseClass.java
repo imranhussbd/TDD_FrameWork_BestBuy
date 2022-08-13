@@ -13,6 +13,7 @@ import org.testng.annotations.Parameters;
 
 import com.bestbuy.qa.common.CommonWaits;
 import com.bestbuy.qa.common.Commons;
+import com.bestbuy.qa.objects.CreateAccount;
 import com.bestbuy.qa.objects.HomePage;
 import com.bestbuy.qa.objects.Ps5PackagePage;
 import com.bestbuy.qa.utils.Configuration;
@@ -30,6 +31,7 @@ public class BaseClass {
 	CommonWaits waits;
 	protected HomePage homePage;
 	protected Ps5PackagePage ps5PackagePage;
+	protected CreateAccount createAccount;
 
 	@Parameters("browser")
 	@BeforeMethod
@@ -65,6 +67,7 @@ public class BaseClass {
 		commons = new Commons(driver, waits);
 		homePage = new HomePage(driver, commons);
 		ps5PackagePage = new Ps5PackagePage(driver, commons);
+		createAccount = new CreateAccount(driver, commons);
 	}
 
 	protected WebDriver getDriver() {
