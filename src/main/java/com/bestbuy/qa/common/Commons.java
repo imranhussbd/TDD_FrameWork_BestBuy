@@ -78,7 +78,7 @@ public class Commons {
 		return button;
 		}
 	
-	public boolean isPresent(WebElement element) {
+	public boolean isDisplayed(WebElement element) {
 		boolean logo = false;
 		try {
 			logo = element.isDisplayed();
@@ -89,5 +89,10 @@ public class Commons {
 			Assert.fail();
 		}
 		return logo;
+	}
+	
+	public void failText() {
+		Loggers.getLog(getClass().getMethods()[0].getName() + " ---> has failed");
+		Assert.fail();
 	}
 }
