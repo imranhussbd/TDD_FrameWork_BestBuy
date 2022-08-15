@@ -138,5 +138,21 @@ public class CreateAccount {
 		//clickCreateAccount();
 		// getErrorText(expectedError);
 	}
+	
+	public void createAccountSteps2(String expectedText1, String firstName, String lastName,
+			String email, String password, String rePassword, String expectedText2, String number) {
+		getHeadingText(expectedText1);
+		logoDisplayed();
+		inputFirstName(firstName);
+		inputLastName(lastName);
+		inputEmail(email);
+		inputPassword(password);
+		reputPassword(rePassword);
+		getPasswordMatchText(expectedText2);
+		inputPhoneNum(number);
+		createAccButtonIsEnabled();
+		clickCreateAccount();
+		// getErrorText(expectedError);
+	}
 
 }
