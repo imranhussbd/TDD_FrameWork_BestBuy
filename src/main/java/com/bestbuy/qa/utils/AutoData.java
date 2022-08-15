@@ -1,7 +1,7 @@
 package com.bestbuy.qa.utils;
 
 public class AutoData {
-	
+
 	private String expectedText1;
 	private String firstName;
 	private String lastName;
@@ -10,17 +10,17 @@ public class AutoData {
 	private String rePassword;
 	private String expectedText2;
 	private String number;
-	
-	public AutoData(String expectedText1, String firstName, String lastName, String  email,
-			String password, String rePassword, String expectedText2, String number) {
+
+	public AutoData(String expectedText1, String firstName, String lastName, String email, String password,
+			String rePassword, String expectedText2, String number) {
 		this.expectedText1 = expectedText1;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.email =  email;
-		this.firstName = password;
-		this.lastName = rePassword;
+		this.email = email;
+		this.password = password;
+		this.rePassword = rePassword;
 		this.expectedText2 = expectedText2;
-		this.number =  number;
+		this.number = number;
 	}
 
 	public String getExpectedText1() {
@@ -54,4 +54,5 @@ public class AutoData {
 	public String getNumber() {
 		return number;
 	}
+
 }

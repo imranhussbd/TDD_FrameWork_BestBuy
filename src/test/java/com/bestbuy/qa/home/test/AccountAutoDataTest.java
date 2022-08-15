@@ -1,12 +1,11 @@
 package com.bestbuy.qa.home.test;
 
-import org.testng.annotations.Test;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import org.testng.annotations.DataProvider;
-
+import org.testng.annotations.Test;
 
 import com.bestbuy.qa.base.BaseClass;
 import com.bestbuy.qa.utils.AutoData;
