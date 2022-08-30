@@ -17,8 +17,8 @@ public class AutoTestExcelAutoData extends BaseClass{
 
 	@DataProvider(name = "excelAutoData")
 	public Iterator<AutoData> autoData(){
-		String pathString = configuration.getConfiguration("excelPath");
-		String sheetNameString = configuration.getConfiguration("excelSheet");
+		String pathString = configuration.get("excelPath");
+		String sheetNameString = configuration.get("excelSheet");
 		ExcelUtil excelUtil = new ExcelUtil(pathString, sheetNameString);
 		String[][] objects = excelUtil.dataObjects();
 		List<AutoData> list = new ArrayList<AutoData>();
@@ -31,7 +31,7 @@ public class AutoTestExcelAutoData extends BaseClass{
 	}
 	
 	@Test(enabled = true, dataProvider = "excelAutoData")
-	public void getAAutoQuote(AutoData autoData) {
+	public void getAutoExelMap(AutoData autoData) {
 		homePage.homepageAccountSteps();
 		createAccount.createAccountSteps(autoData);
 	}

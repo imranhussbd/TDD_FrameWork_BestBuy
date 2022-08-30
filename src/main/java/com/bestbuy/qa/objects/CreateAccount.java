@@ -1,6 +1,17 @@
 package com.bestbuy.qa.objects;
 
+
+import static com.bestbuy.qa.utils.DataMap.Email;
+import static com.bestbuy.qa.utils.DataMap.FirstName;
+import static com.bestbuy.qa.utils.DataMap.LastName;
+import static com.bestbuy.qa.utils.DataMap.Number;
+import static com.bestbuy.qa.utils.DataMap.Password1;
+import static com.bestbuy.qa.utils.DataMap.Password2;
+import static com.bestbuy.qa.utils.DataMap.Text1;
+import static com.bestbuy.qa.utils.DataMap.Text2;
 import static org.testng.Assert.assertEquals;
+
+import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -153,6 +164,20 @@ public class CreateAccount {
 		createAccButtonIsEnabled();
 		clickCreateAccount();
 		// getErrorText(expectedError);
+	}
+	
+	public void createAccountSteps(Map<String,String> map) {
+		getHeadingText(map.get(Text1.getValue()));
+		logoDisplayed();
+		inputFirstName(map.get(FirstName.getValue()));
+		inputLastName(map.get(LastName.getValue()));
+		inputEmail(map.get(Email.getValue()));
+		inputPassword(map.get(Password1.getValue()));
+		reputPassword(map.get(Password2.getValue()));
+		getPasswordMatchText(map.get(Text2.getValue()));
+		inputPhoneNum(map.get(Number.name()));
+		createAccButtonIsEnabled();
+		clickCreateAccount();
 	}
 
 }
