@@ -1,6 +1,6 @@
 package com.bestbuy.qa.utils;
 
-public class AutoData {
+public class CreateAccountData {
 
 	private String expectedText1;
 	private String firstName;
@@ -11,7 +11,7 @@ public class AutoData {
 	private String expectedText2;
 	private String number;
 
-	public AutoData(String expectedText1, String firstName, String lastName, String email, String password,
+	public CreateAccountData(String expectedText1, String firstName, String lastName, String email, String password,
 			String rePassword, String expectedText2, String number) {
 		this.expectedText1 = expectedText1;
 		this.firstName = firstName;

@@ -17,7 +17,7 @@ import org.testng.annotations.Test;
 import com.bestbuy.qa.base.BaseClass;
 import com.bestbuy.qa.utils.ExcelUtil;
 
-public class AutoTestMapDataProvider extends BaseClass {
+public class AccountTestMapDataProvider extends BaseClass {
 
 	@DataProvider(name = "excelMap")
 	public Object[][] mapData() {

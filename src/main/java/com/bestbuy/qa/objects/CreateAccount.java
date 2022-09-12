@@ -19,7 +19,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.bestbuy.qa.common.Commons;
-import com.bestbuy.qa.utils.AutoData;
+import com.bestbuy.qa.utils.CreateAccountData;
 
 public class CreateAccount {
 
@@ -135,16 +135,16 @@ public class CreateAccount {
 		// getErrorText(expectedError);
 	}
 
-	public void createAccountSteps(AutoData autoData) {
-		getHeadingText(autoData.getExpectedText1());
+	public void createAccountSteps(CreateAccountData accountData) {
+		getHeadingText(accountData.getExpectedText1());
 		logoDisplayed();
-		inputFirstName(autoData.getFirstName());
-		inputLastName(autoData.getLastName());
-		inputEmail(autoData.getEmail());
-		inputPassword(autoData.getPassword());
-		reputPassword(autoData.getRePassword());
-		getPasswordMatchText(autoData.getExpectedText2());
-		inputPhoneNum(autoData.getNumber());
+		inputFirstName(accountData.getFirstName());
+		inputLastName(accountData.getLastName());
+		inputEmail(accountData.getEmail());
+		inputPassword(accountData.getPassword());
+		reputPassword(accountData.getRePassword());
+		getPasswordMatchText(accountData.getExpectedText2());
+		inputPhoneNum(accountData.getNumber());
 		createAccButtonIsEnabled();
 		//clickCreateAccount();
 		// getErrorText(expectedError);
