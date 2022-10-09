@@ -46,6 +46,12 @@
 			<artifactId>extentreports</artifactId>
 			<version>5.0.9</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+<dependency>
+    <groupId>org.postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+    <version>42.4.1</version>
+</dependency>
 
 	</dependencies>
 
@@ -60,7 +66,15 @@
 					<source>${compilerVersion}</source>
 					<target>${compilerVersion}</target>
 				</configuration>
-
+			</plugin>
+			<plugin>
+				<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M6</version>
+				<configuration>
+					<suiteXmlFiles>${runner}</suiteXmlFiles>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
