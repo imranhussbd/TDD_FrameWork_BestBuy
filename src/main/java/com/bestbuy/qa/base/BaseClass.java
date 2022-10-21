@@ -108,9 +108,9 @@ public class BaseClass {
 		createAccount = new CreateAccount(driver, commons);
 	}
 
-	protected WebDriver getDriver() {
+	/*protected WebDriver getDriver() {
 		return driver;
-	}
+	}*/
 
 	@AfterMethod
 	public void terminate() {
