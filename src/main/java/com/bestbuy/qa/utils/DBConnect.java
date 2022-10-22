@@ -12,7 +12,7 @@ import java.util.List;
 
 public class DBConnect {
 
-	public static Configuration configuration = Configuration.getInstance();
+	public static Configuration configuration = Configuration.getInstance("config.properties");
 	
 	public static List<List<String>> dbList() {
 		/*

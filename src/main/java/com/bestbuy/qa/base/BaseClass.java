@@ -1,11 +1,17 @@
 package com.bestbuy.qa.base;
 
 import java.lang.reflect.Method;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
+
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
@@ -30,7 +36,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseClass {
 
-	public Configuration configuration = Configuration.getInstance();
+	public Configuration configuration = Configuration.getInstance("config.properties");
 
 	WebDriver driver;
 	WebDriverWait wait;
@@ -56,14 +62,17 @@ public class BaseClass {
 
 	@Parameters("browser")
 	@BeforeMethod
-	public void setUp(String browser1) {
-		driver = localDriver(browser1);
+	public void setUp(String browser) {
+		if(browser.equalsIgnoreCase("browserStackCloud")) {
+			driver = browserStackDriver();
+		}else {
+			driver = localDriver(browser);
+		}
+		configuration = Configuration.getInstance("configuration/config.properties");
 		driver.manage().window().maximize();
 		driver.get(configuration.get("url"));
-		driver.manage().timeouts()
-				.pageLoadTimeout(Duration.ofSeconds(Integer.parseInt(configuration.get("pageloadWait"))));
-		driver.manage().timeouts()
-				.implicitlyWait(Duration.ofSeconds(Integer.parseInt(configuration.get("implicitWait"))));
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(Integer.parseInt(configuration.get("pageloadWait"))));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Integer.parseInt(configuration.get("implicitWait"))));
 		wait = new WebDriverWait(driver, Duration.ofSeconds(Integer.parseInt(configuration.get("explicitWait"))));
 		initClasses();
 	}
@@ -84,18 +93,40 @@ public class BaseClass {
 	}
 
 	private WebDriver localDriver(String browserName) {
-		if (browserName.equalsIgnoreCase("chrome")) {
+		if(browserName.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
-		} else if (browserName.equalsIgnoreCase("edge")) {
+		}else if(browserName.equalsIgnoreCase("edge")) {
 			WebDriverManager.edgedriver().setup();
 			driver = new EdgeDriver();
-		} else if (browserName.equalsIgnoreCase("firefox")) {
+		}else if(browserName.equalsIgnoreCase("firefox")) {
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
-		} else if (browserName.equalsIgnoreCase("safari")) {
+		}else if(browserName.equalsIgnoreCase("safari")) {
 			WebDriverManager.safaridriver().setup();
 			driver = new SafariDriver();
+		}else {
+			WebDriverManager.chromedriver().setup();
+			driver = new ChromeDriver();
+		}
+		return driver;
+	}
+	
+	public WebDriver browserStackDriver() {
+		configuration = Configuration.getInstance("configuration/bsConfig.properties");
+		MutableCapabilities capabilities = new MutableCapabilities();
+		capabilities.setCapability("browserName", configuration.get("browser"));
+		capabilities.setCapability("browserVersion", configuration.get("browserVersion"));
+		capabilities.setCapability("browserstack.user", configuration.get("user"));
+		capabilities.setCapability("browserstack.key", configuration.get("pass"));
+		HashMap<String, Object> browserstackOptions = new HashMap<String, Object>();
+		browserstackOptions.put("os", configuration.get("os"));
+		browserstackOptions.put("osVersion", configuration.get("osVersion"));
+		capabilities.setCapability("bstack:options", browserstackOptions);
+		try {
+			driver = new RemoteWebDriver(new URL(configuration.get("url")), capabilities);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
 		}
 		return driver;
 	}
